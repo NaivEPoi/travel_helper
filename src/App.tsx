@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react'
+import {useEffect, useState} from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import {APIProvider, Map, MapCameraChangedEvent} from '@vis.gl/react-google-maps';
 
 // Define a type for the API response
 interface ApiResponse {
@@ -45,6 +46,17 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
+      <APIProvider apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY!} onLoad={() => console.log('Maps API has loaded.')}>
+        <div className="map-container">
+          <Map
+            defaultZoom={13}
+            defaultCenter={ { lat: -33.860664, lng: 151.208138 } }
+            onCameraChanged={ (ev: MapCameraChangedEvent) =>
+              console.log('camera changed:', ev.detail.center, 'zoom:', ev.detail.zoom)
+            }>
+          </Map>
+        </div>
+      </APIProvider>
     </>
   )
 }
