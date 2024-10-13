@@ -3,16 +3,16 @@ import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 interface LocationState {
-  location: string;
-  startDate: string;
-  endDate: string;
+  location: string
+  startDate: string
+  endDate: string
 }
 
 interface Event {
-  name: string;
-  location: string;
-  timeAvailability: string;
-  expectedTime: string;
+  name: string
+  location: string
+  timeAvailability: string
+  expectedTime: string
 }
 
 const availableEvents: Event[] = [
@@ -62,7 +62,7 @@ const EventSelection: React.FC = () => {
 
   const handleAddEvent = (event: Event) => {
     if (!selectedEvents.find(e => e.name === event.name)) {
-      setSelectedEvents([...selectedEvents, event]);
+      setSelectedEvents([...selectedEvents, event])
     }
   };
 
@@ -110,4 +110,4 @@ const EventSelection: React.FC = () => {
   );
 };
 
-export default EventSelection;
+export default EventSelection
