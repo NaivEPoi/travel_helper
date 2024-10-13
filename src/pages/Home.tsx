@@ -1,6 +1,6 @@
 // src/pages/Home.tsx
-import React from 'react';
-import LocationDateRangeInput from '../components/LocationDateRangeInput';
+import React from 'react'
+import LocationDateRangeInput from '../components/LocationDateRangeInput'
 
 const Home: React.FC = () => {
   return (
@@ -8,7 +8,7 @@ const Home: React.FC = () => {
       <h1>Welcome to the City Search App</h1>
       <LocationDateRangeInput />
     </div>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home
