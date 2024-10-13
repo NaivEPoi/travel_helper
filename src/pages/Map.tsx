@@ -8,8 +8,8 @@ return (
     <div className="map-container">
     {/* <p>{data ? data.message : "Loading..."}</p> */}
       <Map
-        defaultZoom={13}
-        defaultCenter={{ lat: -33.860664, lng: 151.208138 }}
+        defaultZoom={15}
+        defaultCenter={{ lat: 40.803854074441546, lng: -77.86536470268248 }}
         onCameraChanged={(ev: MapCameraChangedEvent) =>
           console.log('camera changed:', ev.detail.center, 'zoom:', ev.detail.zoom)
         }
