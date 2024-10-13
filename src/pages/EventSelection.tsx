@@ -1,5 +1,5 @@
 // src/pages/EventSelection.tsx
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 
 interface LocationState {
@@ -14,48 +14,19 @@ interface Event {
   expectedTime: string
 }
 
-const availableEvents: Event[] = [
-  {
-    name: 'City Tour',
-    location: 'Downtown',
-    timeAvailability: '9:00 AM - 5:00 PM',
-    expectedTime: '2 hours'
-  },
-  {
-    name: 'Museum Visit',
-    location: 'Main Street Museum',
-    timeAvailability: '10:00 AM - 6:00 PM',
-    expectedTime: '1.5 hours'
-  },
-  {
-    name: 'Concert',
-    location: 'Central Park',
-    timeAvailability: '6:00 PM - 9:00 PM',
-    expectedTime: '3 hours'
-  },
-  {
-    name: 'Food Festival',
-    location: 'City Square',
-    timeAvailability: '11:00 AM - 8:00 PM',
-    expectedTime: '2.5 hours'
-  },
-  {
-    name: 'Art Exhibition',
-    location: 'Art District',
-    timeAvailability: '12:00 PM - 5:00 PM',
-    expectedTime: '2 hours'
-  },
-  {
-    name: 'Sports Game',
-    location: 'Stadium',
-    timeAvailability: '3:00 PM - 7:00 PM',
-    expectedTime: '4 hours'
-  }
-]
-
 const EventSelection: React.FC = () => {
   const location = useLocation()
   const { location: city, date} = location.state as LocationState || {}
+
+  const [data, setData] = useState<Event[] | null>(null);
+  useEffect(() => {
+    fetch('/api/location?' + new URLSearchParams({ city, date }))
+      .then(response => response.json())
+      .then((data: Event[]) => setData(data))
+      .catch((error) => console.error('Error fetching data:', error));
+  }, [])
+
+  const availableEvents: Event[] = data ? data : []
 
   const [selectedEvents, setSelectedEvents] = useState<Event[]>([])
 
