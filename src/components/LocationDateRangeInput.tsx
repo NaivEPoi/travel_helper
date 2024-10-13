@@ -1,10 +1,19 @@
 // src/components/LocationDateRangeInput.tsx
-import React, { useState, ChangeEvent, FormEvent } from 'react'
+import React, { useState, useEffect, ChangeEvent, FormEvent } from 'react'
 import { useNavigate } from 'react-router-dom'
+
+
+
+const getEvents = async (location: string, date: string) => {
+  return fetch('/api/location?' + new URLSearchParams({ location, date }))
+    .then((response)=>response.json())
+    .then((responseJson)=>{return responseJson});
+};
 
 const LocationDateRangeInput: React.FC = () => {
   const [location, setLocation] = useState<string>('')
   const [date, setDate] = useState<string>('')
+  const [data, setData] = useState<Event[] | null>(null);
   
   const navigate = useNavigate();
 
@@ -16,7 +25,8 @@ const LocationDateRangeInput: React.FC = () => {
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     if (location && date) {
-      navigate('/event-selection', { state: { location, date } })
+      setData(getEvents(location, date): Event[])
+      navigate('/event-selection', { state: { data, location, date } })
     } else {
       alert('Please fill in all fields.');
     }

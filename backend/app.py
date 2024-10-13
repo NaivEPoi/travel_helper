@@ -4,16 +4,13 @@ import cf_llm
 
 app = Flask(__name__, static_folder='../dist')
 
-@app.route('/api/data')
-def get_data():
-    return jsonify({"message": "Hello from Flask!"})
-
 @app.route('/api/location')
 def process_location():
     city = request.args.get('city')
     date = request.args.get('date')
     # give information to LLM and get the event list
     response = cf_llm.get_attractions(city)
+    print('response')
     print(response)
     # [
         # {
@@ -53,7 +50,11 @@ def process_location():
         #     'expectedTime': '4 hours'
         # }
     # ]
-    return response
+    return jsonify(response)
+
+@app.route('/api/plan', methods=['POST'])
+def plan_trip():
+    pass
 
 
 @app.route('/', defaults={'path': ''})

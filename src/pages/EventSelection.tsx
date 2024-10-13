@@ -1,8 +1,9 @@
 // src/pages/EventSelection.tsx
 import React, { useState, useEffect } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 interface LocationState {
+  data: Event[]
   location: string
   date: string
 }
@@ -15,16 +16,12 @@ interface Event {
 }
 
 const EventSelection: React.FC = () => {
-  const location = useLocation()
-  const { location: city, date} = location.state as LocationState || {}
 
-  const [data, setData] = useState<Event[] | null>(null);
-  useEffect(() => {
-    fetch('/api/location?' + new URLSearchParams({ city, date }))
-      .then(response => response.json())
-      .then((data: Event[]) => setData(data))
-      .catch((error) => console.error('Error fetching data:', error));
-  }, [])
+  const [planResult, setPlanResult] = useState<string>('')
+  const navigate = useNavigate();
+
+  const location = useLocation()
+  const { data, location: city, date} = location.state as LocationState || {}
 
   const availableEvents: Event[] = data ? data : []
 
@@ -38,6 +35,21 @@ const EventSelection: React.FC = () => {
       // Add event to selected list
       setSelectedEvents([...selectedEvents, event])
     }
+  }
+
+  const handlePlanEvent = (events: Event[]) => {
+    fetch('/api/plan', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({events})
+    })
+      .then(response => response.json())
+      .then((planResult: string) => setPlanResult(planResult))
+      .catch((error) => console.error('Error planning event:', error));
+      
+      navigate('/map', { state: { planResult } })
   }
 
   return (
@@ -85,7 +97,15 @@ const EventSelection: React.FC = () => {
       ) : (
         <p className="text-gray-600 dark:text-gray-300 mt-4">No events selected yet.</p>
       )}
+      <button
+                onClick={() => handlePlanEvent(selectedEvents)}
+                className={`mt-2 px-3 py-1 rounded-lg transition-colors ${'bg-green-500 hover:bg-green-600'
+                } text-white`}
+              >
+                Plan Events
+      </button>
     </div>
+    
   )
 }
 
