@@ -41,20 +41,20 @@ const LocationDateRangeInput: React.FC = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="p-6 max-w-lg mx-auto bg-gray-100 rounded-lg shadow-md space-y-4">
+    <form onSubmit={handleSubmit} className="p-6 max-w-lg mx-auto bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded-lg shadow-md space-y-6 transition-colors">
       <div>
-        <label className="block font-bold mb-1">Location:</label>
+        <label className="block font-bold mb-2 text-gray-700 dark:text-gray-300">Location:</label>
         <input
           type="text"
           value={location}
           onChange={handleLocationChange}
           placeholder="Enter city"
-          className="w-full p-2 border rounded"
+          className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-100"
         />
         {suggestions.length > 0 && (
-          <ul className="border border-t-0 bg-white shadow-md rounded-b-lg">
+          <ul className="border border-t-0 bg-white dark:bg-gray-700 shadow-md rounded-b-lg">
             {suggestions.map((city, index) => (
-              <li key={index} onClick={() => handleCitySelect(city)} className="p-2 cursor-pointer hover:bg-gray-100">
+              <li key={index} onClick={() => handleCitySelect(city)} className="p-2 cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-600">
                 {city}
               </li>
             ))}
@@ -62,24 +62,24 @@ const LocationDateRangeInput: React.FC = () => {
         )}
       </div>
       <div>
-        <label className="block font-bold mb-1">Date Range:</label>
+        <label className="block font-bold mb-2 text-gray-700 dark:text-gray-300">Date Range:</label>
         <div className="flex space-x-2">
           <input
             type="date"
             value={startDate}
             onChange={(e) => setStartDate(e.target.value)}
-            className="w-full p-2 border rounded"
+            className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-100"
           />
-          <span className="flex items-center">to</span>
+          <span className="flex items-center text-gray-500 dark:text-gray-400">to</span>
           <input
             type="date"
             value={endDate}
             onChange={(e) => setEndDate(e.target.value)}
-            className="w-full p-2 border rounded"
+            className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-100"
           />
         </div>
       </div>
-      <button type="submit" className="w-full bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-600">
+      <button type="submit" className="w-full bg-blue-500 dark:bg-blue-700 text-white p-3 rounded-lg hover:bg-blue-600 dark:hover:bg-blue-800 transition-colors">
         Submit
       </button>
     </form>

@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 // pages
 import Home from './pages/Home'
 import EventSelection from './pages/EventSelection'
+import { APIProvider, Map, MapCameraChangedEvent } from '@vis.gl/react-google-maps'
 import MapApp from './pages/Map'
 
 // Define a type for the API response
@@ -29,7 +30,6 @@ const App: React.FC = () => {
         <Route path="/event-selection" element={<EventSelection />} />
         <Route path="/map" element={<MapApp />} />
       </Routes>
-
     </Router>
   )
 }
