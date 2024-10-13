@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 
 const LocationDateRangeInput: React.FC = () => {
   const [location, setLocation] = useState<string>('')
-  const [Date, setDate] = useState<string>('')
+  const [date, setDate] = useState<string>('')
   
   const navigate = useNavigate();
 
@@ -15,8 +15,8 @@ const LocationDateRangeInput: React.FC = () => {
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    if (location && Date) {
-      navigate('/event-selection', { state: { location, Date } })
+    if (location && date) {
+      navigate('/event-selection', { state: { location, date } })
     } else {
       alert('Please fill in all fields.');
     }
@@ -39,7 +39,7 @@ const LocationDateRangeInput: React.FC = () => {
         <div className="flex space-x-2">
           <input
             type="date"
-            value={Date}
+            value={date}
             onChange={(e) => setDate(e.target.value)}
             className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-100"
           />

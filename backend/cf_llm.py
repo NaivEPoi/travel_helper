@@ -16,6 +16,6 @@ def run(model, inputs):
 inputs = [
     { "role": "system", "content": "You are a friendly assistan that helps write stories" },
     { "role": "user", "content": "Write a short story about a llama that goes on a journey to find an orange cloud "}
-];
+]
 output = run("@cf/meta/llama-3-8b-instruct", inputs)
 print(output)

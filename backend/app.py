@@ -8,6 +8,11 @@ app = Flask(__name__, static_folder='../dist')
 def get_data():
     return jsonify({"message": "Hello from Flask!"})
 
+@app.route('/api/location')
+def process_location():
+    # give information to LLM and get the event list
+    return jsonify({"message": "Hello from Flask!"})
+
 
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')

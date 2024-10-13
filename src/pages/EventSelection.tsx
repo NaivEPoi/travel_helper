@@ -4,8 +4,7 @@ import { useLocation } from 'react-router-dom'
 
 interface LocationState {
   location: string
-  startDate: string
-  endDate: string
+  date: string
 }
 
 interface Event {
@@ -56,7 +55,7 @@ const availableEvents: Event[] = [
 
 const EventSelection: React.FC = () => {
   const location = useLocation()
-  const { location: city, startDate, endDate } = location.state as LocationState || {}
+  const { location: city, date} = location.state as LocationState || {}
 
   const [selectedEvents, setSelectedEvents] = useState<Event[]>([])
 
@@ -74,8 +73,7 @@ const EventSelection: React.FC = () => {
     <div className="p-6 max-w-4xl mx-auto bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded-lg shadow-md space-y-6 transition-colors">
       <h1 className="text-2xl font-bold mb-4">Selected Details</h1>
       <p className="text-lg"><strong>City:</strong> {city}</p>
-      <p className="text-lg"><strong>Start Date:</strong> {startDate}</p>
-      <p className="text-lg mb-6"><strong>End Date:</strong> {endDate}</p>
+      <p className="text-lg"><strong>Date:</strong> {date}</p>
 
       <h2 className="text-xl font-semibold mb-4">Available Events</h2>
       <ul className="space-y-4">
