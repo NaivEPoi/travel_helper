@@ -1,6 +1,6 @@
 // src/pages/EventSelection.tsx
-import React, { useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import React, { useState } from 'react'
+import { useLocation } from 'react-router-dom'
 
 interface LocationState {
   location: string;
@@ -52,7 +52,7 @@ const availableEvents: Event[] = [
     timeAvailability: '3:00 PM - 7:00 PM',
     expectedTime: '4 hours'
   }
-];
+]
 
 const EventSelection: React.FC = () => {
   const location = useLocation();
@@ -68,7 +68,7 @@ const EventSelection: React.FC = () => {
       // Add event to selected list
       setSelectedEvents([...selectedEvents, event]);
     }
-  };
+  }
 
   return (
     <div className="p-6 max-w-4xl mx-auto bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded-lg shadow-md space-y-6 transition-colors">
@@ -117,7 +117,7 @@ const EventSelection: React.FC = () => {
         <p className="text-gray-600 dark:text-gray-300 mt-4">No events selected yet.</p>
       )}
     </div>
-  );
-};
+  )
+}
 
 export default EventSelection;
