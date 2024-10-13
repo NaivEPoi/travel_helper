@@ -56,7 +56,7 @@ const PoiMarkers = (props: { pois: Poi[] }) => {
   // Update markers, if the markers array has changed
   useEffect(() => {
     clusterer.current?.clearMarkers();
-    clusterer.current?.addMarkers(Object.values(markers));
+    clusterer.current?.addMarkers(Object.values(markers))
   }, [markers])
 
   const setMarkerRef = (marker: Marker | null, key: string) => {
@@ -65,11 +65,11 @@ const PoiMarkers = (props: { pois: Poi[] }) => {
 
     setMarkers(prev => {
       if (marker) {
-        return {...prev, [key]: marker};
+        return {...prev, [key]: marker}
       } else {
-        const newMarkers = {...prev};
-        delete newMarkers[key];
-        return newMarkers;
+        const newMarkers = {...prev}
+        delete newMarkers[key]
+        return newMarkers
       }
     })
   }

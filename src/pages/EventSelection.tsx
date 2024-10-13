@@ -1,5 +1,5 @@
 // src/pages/EventSelection.tsx
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 
 interface LocationState {
@@ -18,7 +18,7 @@ interface Event {
 const EventSelection: React.FC = () => {
 
   const [planResult, setPlanResult] = useState<string>('')
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   const location = useLocation()
   const { data, location: city, date} = location.state as LocationState || {}
