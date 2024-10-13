@@ -16,7 +16,7 @@ def get_attractions(location):
     inputs = [
         { 
             "role": "user", 
-            "content": f"Give me some attractions of {location}, along with their address, available time, and expected time to spend. Give the answer in this format with no other extra things: {{\"name\": \"City Tour\", \"location\": \"Downtown\", \"timeAvailability\": \"9:00 AM - 5:00 PM\", \"expectedTime\": \"2 hours\"}}. Don't say Here are some attractions in {location}, along with their address, available time, and expected time to spend: Make sure every part is included between \"\""
+            "content": f"Give me 1 attractions of {location}, along with their address, available time, and expected time to spend. Give the answer in this format with no other extra things: {{\"name\": \"City Tour\", \"location\": \"Downtown\", \"timeAvailability\": \"9:00 AM - 5:00 PM\", \"expectedTime\": \"2 hours\"}}. Don't say Here are some attractions in {location}, along with their address, available time, and expected time to spend: Make sure every part is included between \"\""
         }
     ]
     print(inputs)
