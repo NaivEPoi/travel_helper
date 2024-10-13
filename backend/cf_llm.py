@@ -27,7 +27,7 @@ def get_attractions(location):
     # print(output_text)
     output_text = output_text.replace('\n\n', ',')
     output_text = output_text.replace('\n', ',')
-    output_text = output_text.replace('"', '\'')
+    # output_text = output_text.replace('"', '\'')
     output_text = f"[{output_text}]"
     
     return output_text

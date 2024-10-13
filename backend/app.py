@@ -1,8 +1,10 @@
 import os
+from flask_cors import CORS
 from flask import Flask, jsonify, send_from_directory, request
 import cf_llm
 
 app = Flask(__name__, static_folder='../dist')
+CORS(app, origins="*")
 
 @app.route('/api/data')
 def get_data():
@@ -68,5 +70,7 @@ def serve(path):
 def not_found(e):
   return send_from_directory(app.static_folder,'index.html')
 
-if __name__ == '__main__':
-    app.run(debug=True)
+# if __name__ == '__main__':
+#     app.run(debug=True)
+if __name__ == "__main__":
+    app.run(port=8000, debug=True)

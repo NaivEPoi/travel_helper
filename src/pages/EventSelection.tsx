@@ -20,7 +20,7 @@ const EventSelection: React.FC = () => {
 
   const [data, setData] = useState<Event[] | null>(null);
   useEffect(() => {
-    fetch('/api/location?' + new URLSearchParams({ city, date }))
+    fetch('http://127.0.0.1:5000/api/location?city=Chicago&date=2024-10-13')
       .then(response => response.json())
       .then((data: Event[]) => setData(data))
       .catch((error) => console.error('Error fetching data:', error));
