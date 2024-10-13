@@ -1,6 +1,6 @@
 // src/pages/EventSelection.tsx
-import React, { useState } from 'react'
-import { useLocation } from 'react-router-dom'
+import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
 interface LocationState {
   location: string;
@@ -52,7 +52,7 @@ const availableEvents: Event[] = [
     timeAvailability: '3:00 PM - 7:00 PM',
     expectedTime: '4 hours'
   }
-]
+];
 
 const EventSelection: React.FC = () => {
   const location = useLocation();
@@ -64,10 +64,10 @@ const EventSelection: React.FC = () => {
     if (!selectedEvents.find(e => e.name === event.name)) {
       setSelectedEvents([...selectedEvents, event]);
     }
-  }
+  };
 
   return (
-    <div className="p-6 max-w-4xl mx-auto bg-gray-100 rounded-lg shadow-md">
+    <div className="p-6 max-w-4xl mx-auto bg-white dark:bg-gray-800 text-black dark:text-white rounded-lg shadow-md">
       <h1 className="text-2xl font-bold mb-4">Selected Details</h1>
       <p className="text-lg"><strong>City:</strong> {city}</p>
       <p className="text-lg"><strong>Start Date:</strong> {startDate}</p>
@@ -76,7 +76,7 @@ const EventSelection: React.FC = () => {
       <h2 className="text-xl font-semibold mb-4">Available Events</h2>
       <ul className="space-y-4">
         {availableEvents.map((event, index) => (
-          <li key={index} className="p-4 bg-white rounded-lg shadow">
+          <li key={index} className="p-4 bg-gray-100 dark:bg-gray-700 rounded-lg shadow">
             <strong className="text-lg">{event.name}</strong>
             <p><strong>Location:</strong> {event.location}</p>
             <p><strong>Time Availability:</strong> {event.timeAvailability}</p>
@@ -95,7 +95,7 @@ const EventSelection: React.FC = () => {
       {selectedEvents.length > 0 ? (
         <ul className="space-y-4 mt-4">
           {selectedEvents.map((event, index) => (
-            <li key={index} className="p-4 bg-white rounded-lg shadow">
+            <li key={index} className="p-4 bg-gray-100 dark:bg-gray-700 rounded-lg shadow">
               <strong className="text-lg">{event.name}</strong>
               <p><strong>Location:</strong> {event.location}</p>
               <p><strong>Time Availability:</strong> {event.timeAvailability}</p>
@@ -104,10 +104,10 @@ const EventSelection: React.FC = () => {
           ))}
         </ul>
       ) : (
-        <p className="text-gray-600 mt-4">No events selected yet.</p>
+        <p className="text-gray-600 dark:text-gray-300 mt-4">No events selected yet.</p>
       )}
     </div>
-  )
-}
+  );
+};
 
 export default EventSelection;

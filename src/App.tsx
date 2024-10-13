@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
 import EventSelection from './pages/EventSelection'
+import ThemeToggle from './components/ThemeToggle';
 import { APIProvider, Map, MapCameraChangedEvent } from '@vis.gl/react-google-maps'
 
 // Define a type for the API response
@@ -22,23 +23,25 @@ const App: React.FC = () => {
 
   return (
     <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/event-selection" element={<EventSelection />} />
-      </Routes>
-      <APIProvider apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY!} onLoad={() => console.log('Maps API has loaded.')}>
-        <div className="map-container">
-          <p>{data ? data.message : "Loading..."}</p>
-          <Map
-            defaultZoom={13}
-            defaultCenter={{ lat: -33.860664, lng: 151.208138 }}
-            onCameraChanged={(ev: MapCameraChangedEvent) =>
-              console.log('camera changed:', ev.detail.center, 'zoom:', ev.detail.zoom)
-            }
-          >
-          </Map>
-        </div>
-      </APIProvider>
+      <div className="p-4 bg-gray-100 dark:bg-gray-900 min-h-screen text-gray-900 dark:text-gray-100 transition-colors">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/event-selection" element={<EventSelection />} />
+        </Routes>
+        <APIProvider apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY!} onLoad={() => console.log('Maps API has loaded.')}>
+          <div className="map-container">
+            <p>{data ? data.message : "Loading..."}</p>
+            <Map
+              defaultZoom={13}
+              defaultCenter={{ lat: -33.860664, lng: 151.208138 }}
+              onCameraChanged={(ev: MapCameraChangedEvent) =>
+                console.log('camera changed:', ev.detail.center, 'zoom:', ev.detail.zoom)
+              }
+            >
+            </Map>
+          </div>
+        </APIProvider>
+      </div>
     </Router>
   )
 }
