@@ -3,16 +3,16 @@ import React, { useState } from 'react'
 import { useLocation } from 'react-router-dom'
 
 interface LocationState {
-  location: string;
-  startDate: string;
-  endDate: string;
+  location: string
+  startDate: string
+  endDate: string
 }
 
 interface Event {
-  name: string;
-  location: string;
-  timeAvailability: string;
-  expectedTime: string;
+  name: string
+  location: string
+  timeAvailability: string
+  expectedTime: string
 }
 
 const availableEvents: Event[] = [
@@ -55,18 +55,18 @@ const availableEvents: Event[] = [
 ]
 
 const EventSelection: React.FC = () => {
-  const location = useLocation();
-  const { location: city, startDate, endDate } = location.state as LocationState || {};
+  const location = useLocation()
+  const { location: city, startDate, endDate } = location.state as LocationState || {}
 
-  const [selectedEvents, setSelectedEvents] = useState<Event[]>([]);
+  const [selectedEvents, setSelectedEvents] = useState<Event[]>([])
 
   const handleToggleEvent = (event: Event) => {
     if (selectedEvents.find(e => e.name === event.name)) {
       // Remove event from selected list
-      setSelectedEvents(selectedEvents.filter(e => e.name !== event.name));
+      setSelectedEvents(selectedEvents.filter(e => e.name !== event.name))
     } else {
       // Add event to selected list
-      setSelectedEvents([...selectedEvents, event]);
+      setSelectedEvents([...selectedEvents, event])
     }
   }
 
@@ -80,7 +80,7 @@ const EventSelection: React.FC = () => {
       <h2 className="text-xl font-semibold mb-4">Available Events</h2>
       <ul className="space-y-4">
         {availableEvents.map((event, index) => {
-          const isSelected = selectedEvents.find(e => e.name === event.name);
+          const isSelected = selectedEvents.find(e => e.name === event.name)
 
           return (
             <li key={index} className="p-4 bg-gray-100 dark:bg-gray-700 rounded-lg shadow">
@@ -97,7 +97,7 @@ const EventSelection: React.FC = () => {
                 {isSelected ? 'Remove from List' : 'Add to List'}
               </button>
             </li>
-          );
+          )
         })}
       </ul>
 
@@ -120,4 +120,4 @@ const EventSelection: React.FC = () => {
   )
 }
 
-export default EventSelection;
+export default EventSelection
