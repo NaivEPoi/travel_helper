@@ -1,5 +1,6 @@
 import os
 from flask import Flask, jsonify, send_from_directory
+import cf_llm
 
 app = Flask(__name__, static_folder='../dist')
 
