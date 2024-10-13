@@ -13,7 +13,7 @@ def process_location():
     city = request.args.get('city')
     date = request.args.get('date')
     # give information to LLM and get the event list
-    response = get_attractions(city)
+    response = cf_llm.get_attractions(city)
     print(response)
     # [
         # {
@@ -53,7 +53,7 @@ def process_location():
         #     'expectedTime': '4 hours'
         # }
     # ]
-    return jsonify(response)
+    return response
 
 
 @app.route('/', defaults={'path': ''})
