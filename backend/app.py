@@ -1,7 +1,7 @@
 import os
 # from flask_cors import CORS
 from flask import Flask, jsonify, send_from_directory, request
-import cf_llm
+import cf_llm, event
 
 app = Flask(__name__, static_folder='../dist')
 # CORS(app, origins="*")
@@ -58,7 +58,16 @@ def process_location():
 
 @app.route('/api/plan', methods=['POST'])
 def plan_trip():
-    pass
+    event_list = []
+    events = request.get_json()
+    for e in events:
+        new_event = event.Event(e['name'], e['location'], e['timeAvailability'], e['expectedTime'])
+        event_list.append(new_event)
+    
+    response = []
+    for e in event_list:
+        response.append({'key': e.location, 'placeID': e.placeID})
+    return jsonify(response)
 
 
 @app.route('/', defaults={'path': ''})

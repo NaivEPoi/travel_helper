@@ -38,12 +38,13 @@ const EventSelection: React.FC = () => {
   }
 
   const handlePlanEvent = (events: Event[]) => {
+    console.log('Planning events:', events)
     fetch('/api/plan', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({events})
+      body: JSON.stringify(events)
     })
       .then(response => response.json())
       .then((planResult: string) => setPlanResult(planResult))
