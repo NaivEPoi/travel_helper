@@ -1,6 +1,6 @@
 import map_helper
 
-class events: 
+class event: 
     def __init__(self, name, location, timeAvailability, expectedTime):
         self.name = name
         self.location = location
