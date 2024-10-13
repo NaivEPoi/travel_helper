@@ -1,5 +1,5 @@
 import os
-from flask import Flask, jsonify, send_from_directory
+from flask import Flask, jsonify, send_from_directory, request
 import cf_llm
 
 app = Flask(__name__, static_folder='../dist')
@@ -9,7 +9,9 @@ def get_data():
     return jsonify({"message": "Hello from Flask!"})
 
 @app.route('/api/location')
-def process_location(city, date):
+def process_location():
+    city = request.args.get('city')
+    date = request.args.get('date')
     # give information to LLM and get the event list
     response = [
         {

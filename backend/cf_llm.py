@@ -3,8 +3,8 @@ from dotenv import dotenv_values
 
 config = dotenv_values("../.env")
 
-API_BASE_URL = f"https://api.cloudflare.com/client/v4/accounts/{config["CF_ACCOUNT_ID"]}/ai/run/"
-headers = {"Authorization": f"Bearer {config["CF_API_TOKEN"]}"}
+API_BASE_URL = f"https://api.cloudflare.com/client/v4/accounts/{config['CF_ACCOUNT_ID']}/ai/run/"
+headers = {"Authorization": f"Bearer {config['CF_API_TOKEN']}"}
 
 
 def run(model, inputs):
